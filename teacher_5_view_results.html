@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>View Results | Teacher Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a2e0e6adad.js" crossorigin="anonymous"></script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background-color: #f4f6f9;
+      color: #1f2937;
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 260px;
+      background-color: #111827;
+      color: #fff;
+      padding: 30px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .sidebar h2 {
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 40px;
+      color: #e5e7eb;
+      text-align: center;
+    }
+
+    .sidebar a {
+      color: #d1d5db;
+      text-decoration: none;
+      font-size: 15px;
+      padding: 12px 15px;
+      display: block;
+      border-radius: 8px;
+      transition: all 0.3s;
+    }
+
+    .sidebar a:hover,
+    .sidebar a.active {
+      background-color: #374151;
+      color: #fff;
+    }
+
+    .logout-btn {
+      margin-top: 30px;
+      background: #ef4444;
+      text-align: center;
+      padding: 10px 0;
+      border-radius: 8px;
+      font-weight: 500;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+
+    .logout-btn:hover {
+      background: #dc2626;
+    }
+
+    /* Main Content */
+    .main-content {
+      flex: 1;
+      padding: 40px;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    .header h1 {
+      font-size: 24px;
+      font-weight: 600;
+    }
+
+    .welcome {
+      background-color: #e0e7ff;
+      color: #1e3a8a;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-weight: 500;
+    }
+
+    .results-box {
+      background-color: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      padding: 25px 30px;
+    }
+
+    .results-box h2 {
+      margin-bottom: 20px;
+      font-size: 20px;
+      color: #1f2937;
+      border-bottom: 2px solid #e5e7eb;
+      padding-bottom: 10px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+
+    th, td {
+      border-bottom: 1px solid #e5e7eb;
+      text-align: left;
+      padding: 12px;
+      font-size: 15px;
+    }
+
+    th {
+      background-color: #f9fafb;
+      color: #374151;
+      font-weight: 600;
+    }
+
+    .grade {
+      font-weight: 600;
+      border-radius: 6px;
+      padding: 5px 10px;
+      font-size: 13px;
+    }
+
+    .grade.a {
+      background-color: #d1fae5;
+      color: #065f46;
+    }
+
+    .grade.b {
+      background-color: #fef3c7;
+      color: #92400e;
+    }
+
+    .grade.c {
+      background-color: #fee2e2;
+      color: #991b1b;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 15px;
+      }
+
+      .main-content {
+        padding: 20px;
+      }
+
+      table {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div>
+      <h2>Teacher Panel</h2>
+      <a href="teacher_3_dashboard.html"><i class="fas fa-home"></i> Dashboard</a>
+      <a href="teacher_4_manage_tests.html"><i class="fas fa-tasks"></i> Manage Tests</a>
+      <a href="#" class="active"><i class="fas fa-chart-line"></i> View Results</a>
+      <a href="teacher_6_create_test.html"><i class="fas fa-plus-circle"></i> Create Test</a>
+    </div>
+    <div class="logout-btn" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="header">
+      <h1>View Results</h1>
+      <div class="welcome">Welcome, <strong>Mr. Sharma</strong></div>
+    </div>
+
+    <div class="results-box">
+      <h2>Test Results</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Student Name</th>
+            <th>Roll No</th>
+            <th>Test Name</th>
+            <th>Subject</th>
+            <th>Marks Obtained</th>
+            <th>Grade</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Priya Mehta</td>
+            <td>CS101</td>
+            <td>Mid Term Test</td>
+            <td>DBMS</td>
+            <td>45 / 50</td>
+            <td><span class="grade a">A</span></td>
+          </tr>
+          <tr>
+            <td>Rahul Gupta</td>
+            <td>CS102</td>
+            <td>Mid Term Test</td>
+            <td>DBMS</td>
+            <td>38 / 50</td>
+            <td><span class="grade b">B</span></td>
+          </tr>
+          <tr>
+            <td>Anjali Singh</td>
+            <td>CS103</td>
+            <td>Mid Term Test</td>
+            <td>DBMS</td>
+            <td>31 / 50</td>
+            <td><span class="grade c">C</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    function logout() {
+      window.location.href = "index.html";
+    }
+  </script>
+</body>
+</html>

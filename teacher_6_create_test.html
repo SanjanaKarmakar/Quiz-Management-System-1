@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teacher Dashboard - Create Test</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a2e0e6adad.js" crossorigin="anonymous"></script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background-color: #f4f6f9;
+      color: #1f2937;
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 260px;
+      background-color: #111827;
+      color: #fff;
+      padding: 30px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .sidebar h2 {
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 40px;
+      color: #e5e7eb;
+      text-align: center;
+    }
+
+    .sidebar a {
+      color: #d1d5db;
+      text-decoration: none;
+      font-size: 15px;
+      padding: 12px 15px;
+      display: block;
+      border-radius: 8px;
+      transition: all 0.3s;
+    }
+
+    .sidebar a:hover,
+    .sidebar a.active {
+      background-color: #374151;
+      color: #fff;
+    }
+
+    .logout-btn {
+      margin-top: 30px;
+      background: #ef4444;
+      text-align: center;
+      padding: 10px 0;
+      border-radius: 8px;
+      font-weight: 500;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+
+    .logout-btn:hover {
+      background: #dc2626;
+    }
+
+    /* Main Content */
+    .main-content {
+      flex: 1;
+      padding: 40px;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    .header h1 {
+      font-size: 24px;
+      font-weight: 600;
+    }
+
+    .welcome {
+      background-color: #e0e7ff;
+      color: #1e3a8a;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-weight: 500;
+    }
+
+    .dashboard-box {
+      background-color: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      padding: 25px 30px;
+      max-width: 800px;
+    }
+
+    .dashboard-box h2 {
+      margin-bottom: 20px;
+      font-size: 20px;
+      color: #1f2937;
+      border-bottom: 2px solid #e5e7eb;
+      padding-bottom: 10px;
+    }
+
+    .details {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    label {
+      font-weight: 500;
+      margin-bottom: 5px;
+      display: block;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 8px;
+      border-radius: 6px;
+      border: 1px solid #d1d5db;
+      margin-top: 5px;
+    }
+
+    button {
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 500;
+    }
+
+    .btn-save {
+      background-color: #2563eb;
+      color: white;
+      padding: 10px 20px;
+    }
+
+    .btn-save:hover {
+      background-color: #1d4ed8;
+    }
+
+    .btn-create {
+      background-color: #16a34a;
+      color: white;
+      padding: 10px 20px;
+    }
+
+    .btn-create:hover {
+      background-color: #15803d;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 15px;
+      }
+
+      .main-content {
+        padding: 20px;
+      }
+
+      .dashboard-box {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div>
+      <h2>Teacher Panel</h2>
+      <a href="teacher_3_dashboard.html"><i class="fas fa-home"></i> Dashboard</a>
+      <a href="teacher_4_manage_tests.html"><i class="fas fa-tasks"></i> Manage Tests</a>
+      <a href="teacher_5_view_results.html"><i class="fas fa-chart-line"></i> View Results</a>
+      <a href="#" class="active"><i class="fas fa-plus-circle"></i> Create Test</a>
+    </div>
+    <div class="logout-btn" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="header">
+      <h1>Create Test</h1>
+      <div class="welcome">Welcome, <strong>Mr. Sharma</strong></div>
+    </div>
+
+    <div class="dashboard-box">
+      <h2>Test Details</h2>
+
+      <form id="createTestForm">
+        <div class="details">
+          <div>
+            <label for="testName">Test Name</label>
+            <input type="text" id="testName" name="testName" placeholder="Enter test name" required>
+          </div>
+
+          <div>
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" name="subject" placeholder="Enter subject" required>
+          </div>
+
+          <div>
+            <label for="date">Date</label>
+            <input type="date" id="date" name="date" required>
+          </div>
+
+          <div>
+            <label for="duration">Duration (in mins)</label>
+            <input type="number" id="duration" name="duration" placeholder="Enter duration" required>
+          </div>
+
+          <div>
+            <label for="totalMarks">Total Marks</label>
+            <input type="number" id="totalMarks" name="totalMarks" placeholder="Enter total marks" required>
+          </div>
+
+          <div>
+            <label for="numQuestions">Number of Questions</label>
+            <input type="number" id="numQuestions" name="numQuestions" placeholder="Enter number of questions" required>
+          </div>
+        </div>
+
+        <div style="margin-top: 25px; display: flex; gap: 15px;">
+          <button type="submit" class="btn-save">Save Test</button>
+          <a href="teacher_7_create.html">
+            <button type="button" class="btn-create" onclick="createQuestionPaper()">Create Question Paper</button>
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function logout() {
+      window.location.href = "index.html";
+    }
+
+    document.getElementById("createTestForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+      alert("Test details saved successfully!");
+    });
+
+    function createQuestionPaper() {
+      window.location.href = "teacher_create_question_paper.html";
+    }
+  </script>
+</body>
+</html>

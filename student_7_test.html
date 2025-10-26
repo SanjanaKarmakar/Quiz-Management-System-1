@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Take Test</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a2e0e6adad.js" crossorigin="anonymous"></script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background-color: #f4f6f9;
+      color: #1f2937;
+      display: flex;
+      min-height: 100vh;
+      padding: 40px;
+      gap: 30px;
+    }
+
+    /* Left-side question numbers */
+    .question-numbers {
+      flex: 1;
+      background-color: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      padding: 25px;
+      height: fit-content;
+      position: sticky;
+      top: 20px;
+    }
+
+    .question-numbers h3 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 18px;
+    }
+
+    .numbers-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .numbers-grid button {
+      background-color: #dbeafe;
+      border: none;
+      border-radius: 6px;
+      padding: 10px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .numbers-grid button.active {
+      background-color: #2563eb;
+      color: white;
+    }
+
+    .numbers-grid button:hover {
+      background-color: #1e40af;
+      color: white;
+    }
+
+    .submit-btn {
+      margin-top: 25px;
+      width: 100%;
+      background-color: #16a34a;
+      color: #fff;
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .submit-btn:hover {
+      background-color: #15803d;
+    }
+
+    /* Main content */
+    .question-section {
+      flex: 3;
+      background-color: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      padding: 30px;
+    }
+
+    .question-section h1 {
+      font-size: 22px;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #e5e7eb;
+      padding-bottom: 10px;
+    }
+
+    .question {
+      margin-bottom: 25px;
+    }
+
+    .question p {
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+
+    .options label {
+      display: block;
+      background-color: #f9fafb;
+      border: 1px solid #d1d5db;
+      padding: 10px 15px;
+      border-radius: 8px;
+      margin-bottom: 8px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .options label:hover {
+      background-color: #e5e7eb;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      body {
+        flex-direction: column;
+      }
+      .question-numbers {
+        position: static;
+        width: 100%;
+        margin-bottom: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Left-side question numbers -->
+  <div class="question-numbers">
+    <h3>Question Numbers</h3>
+    <div class="numbers-grid">
+      <button class="active">1</button>
+      <button>2</button>
+      <button>3</button>
+      <button>4</button>
+      <button>5</button>
+      <button>6</button>
+      <button>7</button>
+      <button>8</button>
+    </div>
+    <button class="submit-btn" onclick="submitTest()">Submit Test</button>
+  </div>
+
+  <!-- Main Content -->
+  <div class="question-section">
+    <h1>Database Management System - Mid Term Test</h1>
+
+    <div class="question">
+      <p><strong>Q1.</strong> What does SQL stand for?</p>
+      <div class="options">
+        <label><input type="radio" name="q1"> Structured Query Language</label>
+        <label><input type="radio" name="q1"> Simple Query Language</label>
+        <label><input type="radio" name="q1"> Sequential Query Logic</label>
+        <label><input type="radio" name="q1"> Systematic Query Language</label>
+      </div>
+    </div>
+
+    <div class="question">
+      <p><strong>Q2.</strong> Which of the following is a type of database model?</p>
+      <div class="options">
+        <label><input type="radio" name="q2"> Hierarchical</label>
+        <label><input type="radio" name="q2"> Relational</label>
+        <label><input type="radio" name="q2"> Network</label>
+        <label><input type="radio" name="q2"> All of the above</label>
+      </div>
+    </div>
+
+    <div class="question">
+      <p><strong>Q3.</strong> Which SQL statement is used to extract data from a database?</p>
+      <div class="options">
+        <label><input type="radio" name="q3"> GET</label>
+        <label><input type="radio" name="q3"> SELECT</label>
+        <label><input type="radio" name="q3"> EXTRACT</label>
+        <label><input type="radio" name="q3"> PULL</label>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function submitTest() {
+      // Redirect to Student Dashboard after submitting test
+      window.location.href = "student_3_dashboard.html"; // replace with your actual dashboard URL
+    }
+  </script>
+</body>
+</html>

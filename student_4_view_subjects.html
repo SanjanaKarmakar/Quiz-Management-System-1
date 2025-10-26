@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a2e0e6adad.js" crossorigin="anonymous"></script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background-color: #f4f6f9;
+      color: #1f2937;
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 260px;
+      background-color: #111827;
+      color: #fff;
+      padding: 30px 20px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .sidebar h2 {
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 40px;
+      color: #e5e7eb;
+      text-align: center;
+    }
+
+    .sidebar a {
+      color: #d1d5db;
+      text-decoration: none;
+      font-size: 15px;
+      padding: 12px 15px;
+      display: block;
+      border-radius: 8px;
+      transition: all 0.3s;
+    }
+
+    .sidebar a:hover,
+    .sidebar a.active {
+      background-color: #374151;
+      color: #fff;
+    }
+
+    /* Logout Button */
+    .logout-btn {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      width: calc(100% - 40px);
+      background: #ef4444;
+      text-align: center;
+      padding: 10px 0;
+      border-radius: 8px;
+      font-weight: 500;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+
+    .logout-btn:hover {
+      background: #dc2626;
+    }
+
+    /* Main Content */
+    .main-content {
+      flex: 1;
+      padding: 60px;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+
+    .header h1 {
+      font-size: 28px;
+      font-weight: 600;
+    }
+
+    .welcome {
+      background-color: #dbeafe;
+      color: #1e40af;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-weight: 500;
+    }
+
+    /* Dashboard Box */
+    .dashboard-box {
+      background-color: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      padding: 50px;
+      max-width: 850px;
+    }
+
+    .dashboard-box h2 {
+      margin-bottom: 25px;
+      font-size: 24px;
+      color: #1f2937;
+      border-bottom: 2px solid #e5e7eb;
+      padding-bottom: 10px;
+    }
+
+    .details {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 25px 50px;
+      margin-bottom: 25px;
+    }
+
+    .detail-item {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .detail-item label {
+      font-weight: 600;
+      color: #4b5563;
+      margin-bottom: 5px;
+      font-size: 16px;
+    }
+
+    .detail-item span {
+      background-color: #f9fafb;
+      border: 1px solid #d1d5db;
+      padding: 12px 14px;
+      border-radius: 6px;
+      font-size: 16px;
+      color: #111827;
+      position: relative;
+      cursor: pointer;
+    }
+
+    /* Tooltip (hover box) */
+    .tooltip {
+      visibility: hidden;
+      opacity: 0;
+      width: 230px;
+      background-color: #1f2937;
+      color: #fff;
+      text-align: left;
+      border-radius: 8px;
+      padding: 10px 12px;
+      position: absolute;
+      top: 110%;
+      left: 0;
+      z-index: 10;
+      font-size: 14px;
+      line-height: 1.4;
+      transition: opacity 0.3s;
+    }
+
+    .detail-item:hover .tooltip {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .action-section {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    button {
+      background-color: #2563eb;
+      color: #fff;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #1e40af;
+    }
+
+    footer {
+      margin-top: 50px;
+      text-align: center;
+      color: #6b7280;
+      font-size: 14px;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+      }
+      .sidebar {
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 15px;
+        position: static;
+      }
+      .logout-btn {
+        position: static;
+        width: auto;
+        margin-top: 10px;
+      }
+      .main-content {
+        padding: 25px;
+      }
+      .dashboard-box {
+        width: 100%;
+        padding: 25px;
+      }
+      .details {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="sidebar">
+    <div>
+      <h2>Student Panel</h2>
+      <a href="student_3_dashboard.html"><i class="fas fa-home"></i> Dashboard</a>
+      <a href="#" class="active"><i class="fas fa-clipboard-list"></i> View Subjects</a>
+      <a href="student_5_take_test.html"><i class="fas fa-edit"></i> Take Test</a>
+      <a href="student_6_view_results.html"><i class="fas fa-chart-line"></i> View Results</a>
+    </div>
+    <div class="logout-btn" onclick="logout()">
+      <i class="fas fa-sign-out-alt"></i> Logout
+    </div>
+  </div>
+
+  <div class="main-content">
+    <div class="header">
+      <h1>TEST DETAILS</h1>
+      <div class="welcome">
+        Welcome, <strong id="studentName">Sanjana Karmakar</strong>
+      </div>
+    </div>
+
+    <div class="dashboard-box">
+      <h2>Upcoming Test</h2>
+
+      <div class="details">
+        <div class="detail-item">
+          <label>Test Name:</label>
+          <span>Mid-Semester Examination
+            <div class="tooltip">This is the mid-semester test covering Units 1 to 3 of the syllabus.</div>
+          </span>
+        </div>
+
+        <div class="detail-item">
+          <label>Subject:</label>
+          <span>Database Management Systems
+            <div class="tooltip">Topics: ER Model, Normalization, SQL Queries, and Transactions.</div>
+          </span>
+        </div>
+
+        <div class="detail-item">
+          <label>Duration:</label>
+          <span>60 Minutes
+            <div class="tooltip">Total duration of the test. You must complete all questions within this time.</div>
+          </span>
+        </div>
+
+        <div class="detail-item">
+          <label>Total Marks:</label>
+          <span>50
+            <div class="tooltip">Each question carries 2 marks. No negative marking.</div>
+          </span>
+        </div>
+      </div>
+
+    </div>
+
+    <footer>© 2025 Student Dashboard | All Rights Reserved</footer>
+  </div>
+
+  <script>
+    function startTest() {
+      alert("Redirecting to test page...");
+      window.location.href = "student_5_take_test.html";
+    }
+
+    function logout() {
+      window.location.href = "index.html";
+    }
+  </script>
+</body>
+</html>

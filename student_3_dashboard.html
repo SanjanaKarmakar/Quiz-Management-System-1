@@ -1,0 +1,238 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a2e0e6adad.js" crossorigin="anonymous"></script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background: url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+      color: #fff;
+      display: flex;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 40, 0.7);
+      z-index: 0;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 260px;
+      background: rgba(17, 24, 39, 0.8);
+      backdrop-filter: blur(8px);
+      color: #fff;
+      padding: 30px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      z-index: 2;
+    }
+
+    .sidebar h2 {
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 40px;
+      color: #e5e7eb;
+      text-align: center;
+    }
+
+    .sidebar a {
+      color: #d1d5db;
+      text-decoration: none;
+      font-size: 15px;
+      padding: 12px 15px;
+      display: block;
+      border-radius: 8px;
+      transition: all 0.3s;
+    }
+
+    .sidebar a:hover,
+    .sidebar a.active {
+      background-color: #374151;
+      color: #fff;
+    }
+
+    .logout-btn {
+      background: #ef4444;
+      text-align: center;
+      padding: 10px 0;
+      border-radius: 8px;
+      font-weight: 500;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+
+    .logout-btn:hover {
+      background: #dc2626;
+    }
+
+    /* Main Section */
+    .main-content {
+      flex: 1;
+      padding: 40px 60px;
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Top Right Welcome */
+    .welcome {
+      position: absolute;
+      top: 30px;
+      right: 40px;
+      background-color: rgba(219, 234, 254, 0.15);
+      color: #e0e7ff;
+      padding: 8px 20px;
+      border-radius: 10px;
+      font-weight: 500;
+      font-size: 16px;
+    }
+
+    /* Page Title */
+    .header {
+      text-align: left;
+      margin-bottom: 40px;
+    }
+
+    .header h1 {
+      font-size: 28px;
+      font-weight: 600;
+      color: #fff;
+      margin-top: 20px;
+    }
+
+    /* Profile Card */
+    .profile-card {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      padding: 40px 50px;
+      width: 500px;
+      text-align: left;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease;
+    }
+
+    .profile-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .profile-card h2 {
+      font-size: 1.6rem;
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: #fff;
+    }
+
+    .profile-card p {
+      font-size: 1rem;
+      margin: 10px 0;
+      color: #ddd;
+    }
+
+    .status {
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      background-color: rgba(0, 200, 83, 0.8);
+    }
+
+    footer {
+      position: absolute;
+      bottom: 10px;
+      width: 100%;
+      text-align: center;
+      font-size: 0.85rem;
+      color: #bbb;
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 15px;
+        position: fixed;
+        bottom: 0;
+      }
+
+      .main-content {
+        padding: 20px;
+        margin-bottom: 80px;
+      }
+
+      .profile-card {
+        width: 100%;
+        padding: 30px;
+      }
+
+      .welcome {
+        right: 20px;
+        top: 80px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div>
+      <h2>Student Panel</h2>
+      <a href="#" class="active"><i class="fas fa-home"></i> Dashboard</a>
+      <a href="student_4_view_subjects.html"><i class="fas fa-clipboard-list"></i> View Subjects</a>
+      <a href="student_5_take_test.html"><i class="fas fa-edit"></i> Take Test</a>
+      <a href="student_6_view_results.html"><i class="fas fa-chart-line"></i> View Results</a>
+    </div>
+    <div class="logout-btn" onclick="logout()">
+      <i class="fas fa-sign-out-alt"></i> Logout
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="welcome">Welcome, <strong id="studentName">Sanjana Karmakar</strong></div>
+
+    <div class="header">
+      <h1>Student Profile</h1>
+    </div>
+
+    <div class="profile-card">
+      <h2>Sanjana Karmakar</h2>
+      <p><strong>Roll No:</strong> CS2023001</p>
+      <p><strong>Course:</strong> Computer Science</p>
+      <p><strong>Semester:</strong> 5th</p>
+      <p><strong>Email:</strong> sanjana.k@example.com</p>
+      <p><strong>Phone:</strong> +91 98765 43210</p>
+      <p><strong>Status:</strong> <span class="status">Active</span></p>
+    </div>
+
+    <footer>© 2025 Student Dashboard | All Rights Reserved</footer>
+  </div>
+
+  <script>
+    function logout() {
+      window.location.href = "index.html";
+    }
+  </script>
+</body>
+</html>

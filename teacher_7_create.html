@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create MCQ Test</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f0f2f5;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #2a3f54;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+      font-size: 1.8em;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+
+    main {
+      display: flex;
+      max-width: 1400px;
+      margin: 30px auto;
+      gap: 20px;
+      align-items: stretch;
+    }
+
+    /* Professional sidebar */
+    .sidebar {
+      background: linear-gradient(160deg, #0c3468, #0c3468);
+      color: #fff;
+      flex: 0 0 280px;
+      padding: 30px 20px;
+      border-radius: 12px;
+      height: 100%;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .sidebar h2 {
+      margin-top: 0;
+      margin-bottom: 25px;
+      font-size: 1.3em;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      border-bottom: 1px solid rgba(255,255,255,0.3);
+      padding-bottom: 10px;
+    }
+
+    .sidebar label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 500;
+      font-size: 0.95em;
+      color: #f0f0f0;
+    }
+
+    .sidebar input {
+      width: 100%;
+      padding: 10px 12px;
+      margin-bottom: 15px;
+      border: 1px solid rgba(255,255,255,0.5);
+      border-radius: 6px;
+      font-size: 0.95em;
+      background-color: rgba(255,255,255,0.1);
+      color: #fff;
+      transition: all 0.3s ease;
+    }
+
+    .sidebar input::placeholder {
+      color: rgba(255,255,255,0.7);
+    }
+
+    .sidebar input:focus {
+      border-color: #fff;
+      background-color: rgba(255,255,255,0.2);
+      outline: none;
+    }
+
+    .questions-section {
+      flex: 1;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+      overflow-y: auto;
+    }
+
+    .question-box {
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .question-box:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.12);
+    }
+
+    .question-box h3 {
+      margin-top: 0;
+      margin-bottom: 15px;
+      font-size: 1.1em;
+      color: #333;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 500;
+      color: #555;
+    }
+
+    input[type="text"], select {
+      width: 100%;
+      padding: 8px 10px;
+      margin-bottom: 12px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 0.95em;
+      transition: border-color 0.3s;
+    }
+
+    input[type="text"]:focus, select:focus {
+      border-color: #4CAF50;
+      outline: none;
+    }
+
+    button {
+      display: inline-block;
+      background-color: #4CAF50;
+      color: white;
+      font-weight: 500;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1em;
+      transition: background-color 0.3s;
+      margin: 20px 0;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      font-size: 0.9em;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+
+<header>Create MCQ Test</header>
+
+<main>
+  <!-- Professional Left sidebar -->
+  <div class="sidebar">
+    <h2>Test Details</h2>
+    <label>Subject Name:</label>
+    <input type="text" id="subjectName" placeholder="Enter subject name" required>
+
+    <label>Test Name:</label>
+    <input type="text" id="testName" placeholder="Enter test name" required>
+
+    <label>Test Duration:</label>
+    <input type="text" id="testDuration" placeholder="e.g., 60 mins" required>
+
+    <label>Total Marks:</label>
+    <input type="text" id="totalMarks" placeholder="e.g., 100" required>
+
+    <label>Test Date:</label>
+    <input type="text" id="testDate" placeholder="YYYY-MM-DD" required>
+  </div>
+
+  <!-- Questions section -->
+  <form id="mcqForm" class="questions-section">
+    <!-- 25 questions dynamically added -->
+  </form>
+</main>
+
+<div style="text-align:center; max-width:1400px; margin:auto;">
+  <button type="button" onclick="submitForm()">Submit Test</button>
+</div>
+
+<footer>© 2025 Teacher Dashboard | All Rights Reserved</footer>
+
+<script>
+  const form = document.getElementById('mcqForm');
+
+  for (let i = 1; i <= 25; i++) {
+    const questionBox = document.createElement('div');
+    questionBox.classList.add('question-box');
+
+    questionBox.innerHTML = `
+      <h3>Question ${i}</h3>
+      <label>Question Text:</label>
+      <input type="text" name="question${i}" placeholder="Enter question ${i}" required>
+
+      <label>Option A:</label>
+      <input type="text" name="question${i}_a" placeholder="Option A" required>
+
+      <label>Option B:</label>
+      <input type="text" name="question${i}_b" placeholder="Option B" required>
+
+      <label>Option C:</label>
+      <input type="text" name="question${i}_c" placeholder="Option C" required>
+
+      <label>Option D:</label>
+      <input type="text" name="question${i}_d" placeholder="Option D" required>
+
+      <label>Correct Answer:</label>
+      <select name="question${i}_correct" required>
+        <option value="">Select correct option</option>
+        <option value="A">A</option>
+        <option value="B">B</option>
+        <option value="C">C</option>
+        <option value="D">D</option>
+      </select>
+    `;
+
+    form.appendChild(questionBox);
+  }
+
+  function submitForm() {
+    const testDetails = {
+      subject: document.getElementById('subjectName').value,
+      testName: document.getElementById('testName').value,
+      duration: document.getElementById('testDuration').value,
+      totalMarks: document.getElementById('totalMarks').value,
+      date: document.getElementById('testDate').value
+    };
+
+    const formData = new FormData(form);
+    const testData = [];
+    for (let i = 1; i <= 25; i++) {
+      const question = {
+        text: formData.get(`question${i}`),
+        options: {
+          A: formData.get(`question${i}_a`),
+          B: formData.get(`question${i}_b`),
+          C: formData.get(`question${i}_c`),
+          D: formData.get(`question${i}_d`)
+        },
+        correct: formData.get(`question${i}_correct`)
+      };
+      testData.push(question);
+    }
+
+    console.log({ testDetails, questions: testData });
+    alert("Test submitted! Check console for data.");
+  }
+</script>
+
+</body>
+</html>
